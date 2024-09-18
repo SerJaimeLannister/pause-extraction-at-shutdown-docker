@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  unrar:
+    image: ubuntu:latest
+    container_name: unrar_container
+    volumes:
+      - ./input:/input
+      - ./output:/output
+      - ./scripts:/scripts # Ensure this line is present to mount the scripts folder
+    entrypoint: ["/bin/bash", "-c", "/scripts/script.sh"]
+    working_dir: /input
+    environment:
+      - RAR_FILE=game-factorio.rar
